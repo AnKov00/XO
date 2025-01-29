@@ -1,3 +1,4 @@
+import sys
 board = [] #Переменная содержащая игровое поле
 a,b = None,None # Две переменных каординат
 x = "X"
@@ -11,6 +12,7 @@ def start():
     if game != 'start':#Для начала, либо пркекращения игры
         print('Игра окончена')
         print(f"Игорк Х победил {Win_X} раз, игок О {Win_O} раз, {No_win} сыграно в ничью")
+        sys.exit()
         return
     global board
     board = [["." for j in range(4) ] for i in range(4)] #Доска - это матрица 3х3. Используем генератор списков.
