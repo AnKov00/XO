@@ -15,7 +15,7 @@ def start():
         sys.exit()
         return
     global board
-    board = [["." for j in range(4) ] for i in range(4)] #Доска - это матрица 3х3. Используем генератор списков.
+    board = [[" " for j in range(4) ] for i in range(4)] #Доска - это матрица 3х3. Используем генератор списков.
     board[0][0], board [0][1], board [0][2], board [0][3]= "*", 'A', 'B', 'C'# Для эстетики меняю верхние цифры на буквы.
     board[1][0], board[2][0], board[3][0]= 1,2,3
     print(board[0][0], board[0][1], board[0][2], board[0][3])
@@ -38,10 +38,12 @@ def step_X ():
    if b not in ['1', '2', '3']:#Проверка координаты по вертикали
        print("Введена неправильная координата по вертикали"), step_X()
    b = int(b)
-   if board[b][a]=='.':#Прверка координат и внесение на поле
+   if board[b][a]==' ':#Прверка координат и внесение на поле
        board[b][a] = x
-       print(*board, sep='\n')
+       for i in board:
+           print(*i)
        win_check()
+
        step_O()#Переход хода
        return
    else:print("Ячейка занята, выберите другую ячейку"), step_X()
@@ -64,9 +66,10 @@ def step_O():
         print("Введена неправильная координата по вертикали"), step_O()
     b = int(b)
 
-    if board[b][a] == '.':  # Прверка координат и внесение на поле
+    if board[b][a] == ' ':  # Прверка координат и внесение на поле
         board[b][a] = o
-        print(*board, sep='\n')
+        for i in board:
+            print(*i)
         win_check()
         step_X() #Переход хода Х
         return
@@ -96,12 +99,12 @@ def win_check():
             print("Победил Х")
             global Win_X
             Win_X +=1
-            start()
+            return start()
         if count_O == 3:
             print("Победил О")
             global Win_O
             Win_O += 1
-            start()
+            return start()
         else:return
     win_chek_len(board_1)
     win_chek_len(board_2)
@@ -114,13 +117,14 @@ def win_check():
     count_point = 0 #Счетчик свободных ячеек
     for j in board:
         for i in  j:
-            if i == '.':
+            if i == ' ':
                 count_point+=1
     if count_point == 0:
         global No_win
         No_win+=1
         print("Ничья")
-        start()
+        return start()
     return
+
 
 start()
