@@ -18,6 +18,7 @@ def start():
     board = [[" " for j in range(4) ] for i in range(4)] #Доска - это матрица 3х3. Используем генератор списков.
     board[0][0], board [0][1], board [0][2], board [0][3]= "*", 'A', 'B', 'C'# Для эстетики меняю верхние цифры на буквы.
     board[1][0], board[2][0], board[3][0]= 1,2,3
+    print('       Добро пожаловать в игру "крестики-нолики"')
     print(board[0][0], board[0][1], board[0][2], board[0][3])
     print(board[1][0], '\n', board[2][0], '\n', board[3][0], sep="")
     step_X()
@@ -41,7 +42,8 @@ def step_X ():
    if board[b][a]==' ':#Прверка координат и внесение на поле
        board[b][a] = x
        for i in board:
-           print(*i)
+           print(f"{i[0]} | {i[1]} | {i[2]} | {i[3]} |")
+           print("---------------")
        win_check()
 
        step_O()#Переход хода
@@ -69,7 +71,8 @@ def step_O():
     if board[b][a] == ' ':  # Прверка координат и внесение на поле
         board[b][a] = o
         for i in board:
-            print(*i)
+            print(f"{i[0]} | {i[1]} | {i[2]} | {i[3]} |")
+            print("---------------")
         win_check()
         step_X() #Переход хода Х
         return
